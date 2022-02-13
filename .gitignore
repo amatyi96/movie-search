@@ -1,0 +1,14 @@
+### Angular ###
+node_modules
+.angular
+dist
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+.history/*
