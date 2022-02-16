@@ -1,0 +1,16 @@
+<div class="input-container" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+    <div class="label-wrapper">
+        <label for="search" fxLayout="column" fxLayoutAlign="center start">{{label}}</label>
+        <div class="label-placeholder"></div>
+    </div>
+
+    <div class="input-wrapper" fxLayout="column">
+        <div class="input" fxLayout="row" fxLayoutAlign="start center">
+            <input #search id="search" type="text" [formControl]="control" [placeholder]="placeholder"><br><br>
+            <mat-icon fxLayout="row" fxLayoutAlign="center center" (click)="resetControl(search)">{{icon}}</mat-icon>
+        </div>
+        <div class="error">
+            <span *ngIf="control.hasError('minlength')">At least 3 characters are required</span>
+        </div>
+    </div>
+</div>

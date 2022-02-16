@@ -1,0 +1,60 @@
+@import "../../../variables";
+
+.input-container {
+  .label-wrapper {
+    label {
+      color: $white;
+      font-size: 24px;
+      height: 37px;
+    }
+
+    .label-placeholder {
+      height: 15px;
+    }
+  }
+
+  .input-wrapper {
+    width: 100%;
+
+    .input {
+      border-bottom: 1px solid $grey;
+      background-color: $black;
+
+      &:focus-within{
+        border-color: $white;
+      }
+
+      input {
+        width: 100%;
+        height: 25px;
+        box-sizing: border-box;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: $white;
+        font-size: 15px;
+      }
+
+      mat-icon {
+        width: 20px;
+        height: 20px;
+        border: 1px solid $white;
+        border-radius: 50%;
+        color: $white;
+        font-size: 12px;
+        cursor: pointer;
+
+        &:hover {
+          color: $grey;
+          border-color: $grey;
+        }
+      }
+    }
+
+    .error {
+      color: $red;
+      font-size: 12px;
+      height: 15px;
+    }
+  }
+}

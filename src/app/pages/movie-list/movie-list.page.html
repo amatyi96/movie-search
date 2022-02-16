@@ -1,0 +1,38 @@
+<div class="movie-list-container" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <app-input-component
+                fxFlex="50"
+                [control]="searchControl"
+                [label]="'Search:'"
+                [placeholder]="'Ex.: Game'"
+                [icon]="'close'"
+                (valueChange)="searchMovie($event)"
+        ></app-input-component>
+    </div>
+
+    <div class="movie-card-container" fxLayout="column" fxLayoutGap="10px">
+        <div class="total-results"><span>{{movieList?.total_results || 0}} Search result(s)</span></div>
+
+        <div fxLayout="row wrap" fxFlexFill fxLayoutGap="10px">
+            <a [routerLink]="[movieListItem.id]" class="movie-card" fxLayout="column" fxFlex="150px" fxLayoutGap="5px" *ngFor="let movieListItem of movieList?.results">
+                <img [src]="getMovieImageUrl(movieListItem)" alt="Empty image">
+                <span class="movie-card-title">{{movieListItem.original_title}}</span>
+            </a>
+        </div>
+
+        <div class="empty-movie">
+            <span *ngIf="movieList?.total_results === 0">No movie found</span>
+            <span *ngIf="searchControl.value.length < 3">At least 3 characters are required to search</span>
+        </div>
+    </div>
+
+    <mat-paginator
+            [length]="movieList?.total_results"
+            [pageSize]="20"
+            [hidePageSize]="true"
+            (page)="searchMovie(searchControl.value, $event.pageIndex + 1)"
+            *ngIf="movieList && movieList.total_results > 20"
+    ></mat-paginator>
+</div>
+
+<router-outlet></router-outlet>
