@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MovieDetailsEntryComponent } from "./components/modal/movie-details-entry.component";
 import { MovieDetailsDialog } from "./components/modal/movie-details.dialog";
 import { MatDialogModule } from "@angular/material/dialog";
+import { FormatDatePipe } from "./pipes/format-date.pipe";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MatDialogModule } from "@angular/material/dialog";
     MovieListPage,
     InputComponent,
     MovieDetailsEntryComponent,
-    MovieDetailsDialog
+    MovieDetailsDialog,
+    FormatDatePipe
   ],
   imports: [
     BrowserModule,

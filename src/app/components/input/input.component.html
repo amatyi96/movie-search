@@ -1,7 +1,7 @@
-<div class="input-container" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+<div class="input-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px" fxLayoutAlign="start center" fxLayoutAlign.lt-sm="start start">
     <div class="label-wrapper">
         <label for="search" fxLayout="column" fxLayoutAlign="center start">{{label}}</label>
-        <div class="label-placeholder"></div>
+        <div class="label-placeholder" fxHide.lt-sm></div>
     </div>
 
     <div class="input-wrapper" fxLayout="column">

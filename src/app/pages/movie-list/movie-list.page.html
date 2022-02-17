@@ -1,7 +1,9 @@
-<div class="movie-list-container" fxLayout="column">
-    <div fxLayout="row" fxLayoutAlign="center center">
+<div class="movie-list-container" fxLayout="column" fxLayoutAlign="start center">
+    <div fxLayout="row" fxFill fxLayoutAlign="center center">
         <app-input-component
                 fxFlex="50"
+                fxFlex.lt-md="75"
+                fxFlex.lt-sm="100"
                 [control]="searchControl"
                 [label]="'Search:'"
                 [placeholder]="'Ex.: Game'"
@@ -10,13 +12,15 @@
         ></app-input-component>
     </div>
 
+    <div class="total-results-mobile"><span>{{movieList?.total_results || 0}} Search result(s)</span></div>
     <div class="movie-card-container" fxLayout="column" fxLayoutGap="10px">
         <div class="total-results"><span>{{movieList?.total_results || 0}} Search result(s)</span></div>
 
-        <div fxLayout="row wrap" fxFlexFill fxLayoutGap="10px">
+        <div fxLayout="row wrap" fxLayoutGap="10px">
             <a [routerLink]="[movieListItem.id]" class="movie-card" fxLayout="column" fxFlex="150px" fxLayoutGap="5px" *ngFor="let movieListItem of movieList?.results">
-                <img [src]="getMovieImageUrl(movieListItem)" alt="Empty image">
-                <span class="movie-card-title">{{movieListItem.original_title}}</span>
+                <img [src]="getMovieImageUrl(movieListItem)" alt="Movie image">
+                <span class="movie-card-title">{{movieListItem.original_title}}<br></span>
+                <span class="movie-card-detail">({{movieListItem.release_date | formatDate: 'YYYY'}}{{movieListItem.genre_ids.length ? ', ' + findGenre(movieListItem.genre_ids[0]) : ''}})</span>
             </a>
         </div>
 
@@ -26,13 +30,15 @@
         </div>
     </div>
 
-    <mat-paginator
-            [length]="movieList?.total_results"
-            [pageSize]="20"
-            [hidePageSize]="true"
-            (page)="searchMovie(searchControl.value, $event.pageIndex + 1)"
-            *ngIf="movieList && movieList.total_results > 20"
-    ></mat-paginator>
+    <div class="paginator-container" fxLayout="row" fxLayoutAlign="end center">
+        <mat-paginator
+                [length]="movieList?.total_results"
+                [pageSize]="20"
+                [hidePageSize]="true"
+                (page)="searchMovie(searchControl.value, $event.pageIndex + 1)"
+                *ngIf="movieList && movieList.total_results > 20"
+        ></mat-paginator>
+    </div>
 </div>
 
 <router-outlet></router-outlet>

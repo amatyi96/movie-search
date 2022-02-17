@@ -14,6 +14,7 @@ export class MovieService {
     private static readonly GenreListUrl: string = `${environment.apiUrl}/genre/movie/list`;
     private static readonly SearchMovieUrl: string = `${environment.apiUrl}/search/movie`;
     private static readonly MovieDetailsUrl: string = `${environment.apiUrl}/movie`;
+    private static readonly ImdbUrl: string = `https://www.imdb.com/title`;
 
     constructor(private httpClient: HttpClient) {}
 
@@ -41,7 +42,15 @@ export class MovieService {
         return this.httpClient.get<MovieDetailsResponse>(`${MovieService.MovieDetailsUrl}/${id}`, {params: httpParams});
     }
 
-    public getMovieImageUrl(backdrop_path: string, width: number, height: number): string {
+    public getMovieImageUrl(backdrop_path: string | null, width: number, height: number): string {
+        if (!backdrop_path) {
+            return '/assets/empty.png'
+        }
+
         return `${environment.imgApiUrl}/w${width}_and_h${height}_bestv2/${backdrop_path}`;
+    }
+
+    public getImdbUrl(imdbId: string | null): string {
+        return imdbId ? `${MovieService.ImdbUrl}/${imdbId}` : '';
     }
 }

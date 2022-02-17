@@ -1,0 +1,23 @@
+@import "../../../variables";
+
+mat-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $grey;
+    border-radius: 50%;
+  }
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+
+  &:active {
+    color: $grey;
+  }
+}

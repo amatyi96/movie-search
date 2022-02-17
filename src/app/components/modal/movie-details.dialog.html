@@ -1,2 +1,30 @@
-<div mat-dialog-content>
+<mat-icon (click)="close()">close</mat-icon>
+
+<div mat-dialog-content fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+    <img [src]="getMovieImageUrl(300, 450)" alt="Movie image" width="300" height="450" fxHide fxShow.gt-xs>
+    <img [src]="getMovieImageUrl(300, 300)" alt="Movie image" width="200" height="200" fxShow fxHide.gt-xs>
+
+    <div>
+        <h1>{{data.movieDetails.title}}</h1>
+        <h2 *ngIf="data.movieDetails.tagline">{{data.movieDetails.tagline}}</h2>
+        <p>Released: {{data.movieDetails.release_date | formatDate}}</p>
+        <p *ngIf="data.movieDetails.overview">{{data.movieDetails.overview}}</p>
+
+        <div fxLayout="row" fxLayoutGap="5px">
+            <div>
+                <p class="sm-margin" *ngIf="data.movieDetails.production_countries.length">Country</p>
+                <p class="sm-margin">Language</p>
+                <p class="sm-margin" *ngIf="data.movieDetails.genres.length">Genres</p>
+                <p class="sm-margin" *ngIf="data.movieDetails.runtime">Length</p>
+                <p class="sm-margin" *ngIf="data.movieDetails.imdb_id">Imdb</p>
+            </div>
+            <div>
+                <p class="sm-margin" *ngIf="data.movieDetails.production_countries.length"><ng-container *ngFor="let country of data.movieDetails.production_countries; let index = index">{{country.name}}{{index !== data.movieDetails.production_countries.length - 1 ? ', ' : '' }}</ng-container></p>
+                <p class="sm-margin">{{data.movieDetails.original_language}}</p>
+                <p class="sm-margin" *ngIf="data.movieDetails.genres.length"><ng-container *ngFor="let genre of data.movieDetails.genres; let index = index">{{genre.name}}{{index !== data.movieDetails.genres.length - 1 ? ', ' : '' }}</ng-container></p>
+                <p class="sm-margin" *ngIf="data.movieDetails.runtime">{{data.movieDetails.runtime}} mins</p>
+                <p class="sm-margin" *ngIf="data.movieDetails.runtime"><a [href]="getImdbUrl()">[Link]</a></p>
+            </div>
+        </div>
+    </div>
 </div>

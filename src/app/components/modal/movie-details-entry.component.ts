@@ -24,6 +24,8 @@ export class MovieDetailsEntryComponent {
     private openMovieDetailsDialog(movieDetails: MovieDetailsResponse): void {
         const dialogRef: MatDialogRef<MovieDetailsDialog> = this.dialog.open(MovieDetailsDialog, {
             hasBackdrop: true,
+            backdropClass: 'movie-details-dialog-backdrop',
+            maxWidth: '850px',
             data: {
                 movieDetails: movieDetails
             },

@@ -4,4 +4,8 @@
   min-height: 100vh;
   background-color: $black;
   padding: 50px;
+
+  @media screen and (max-width: 599px) {
+    padding: 25px;
+  }
 }

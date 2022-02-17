@@ -1,5 +1,5 @@
 export interface GenreListResponse {
-    genres: Array<GenreListItem>
+    genres: Array<GenreListItem>;
 }
 
 export interface GenreListItem {

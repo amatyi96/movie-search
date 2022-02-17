@@ -7,45 +7,104 @@
   align-items: center;
 }
 
+.total-results-mobile {
+  display: none;
+}
+
+
 .movie-list-container {
   max-width: 1360px;
   width: 100%;
 
+  .movie-card-container {
+    width: 100%;
+
+    .total-results {
+      color: $white;
+      font-size: 20px;
+      margin-left: 10px;
+    }
+
+    .movie-card {
+      margin: 10px;
+      text-decoration: none;
+
+      img {
+        width: 150px;
+        height: 225px;
+      }
+
+      &-title {
+        color: $white;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      &-detail {
+        color: $white;
+        font-size: 12px;
+      }
+
+      &:hover {
+        box-shadow: rgba($grey, 0.35) 0 5px 15px;
+      }
+    }
+
+    .empty-movie {
+      color: $white;
+      font-size: 24px;
+      text-align: center;
+    }
+  }
+
+  .paginator-container {
+    width: 100%;
+
+    .mat-paginator {
+      .mat-paginator-range-label {
+        color: $white;
+      }
+    }
+  }
+}
+
+$firstBreakpoint: 1459px;
+$maxContainerWidth: 1190px;
+$cardWidth: 170px;
+
+@for $i from 0 through 6{
+  @media screen and (max-width: $firstBreakpoint - ($i * $cardWidth)) {
+    .movie-card-container, .paginator-container {
+      max-width: ($maxContainerWidth - ($i * $cardWidth));
+    }
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .movie-card-container, .paginator-container {
+    max-width: 510px;
+  }
+}
+
+@media screen and (max-width: 559px) {
+  .movie-card-container, .paginator-container {
+    max-width: 340px;
+  }
+}
+
+@media screen and (max-width: 389px) {
+  .movie-card-container, .paginator-container {
+    max-width: 170px;
+  }
+
   .total-results {
-    color: $white;
-    font-size: 20px;
-    margin-left: 10px;
-  }
+    display: none;
 
-  .movie-card {
-    margin: 10px;
-    text-decoration: none;
-
-    img {
-      width: 150px;
-      height: 225px;
-    }
-
-    &-title {
+    &-mobile {
+      display: block;
+      width: 100%;
       color: $white;
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    &:hover {
-      box-shadow: rgba($grey, 0.35) 0 5px 15px;
-    }
-  }
-
-  .empty-movie {
-    color: $white;
-    font-size: 24px;
-    text-align: center;
-  }
-
-  .mat-paginator {
-    .mat-paginator-range-label {
-      color: $white;
+      font-size: 20px;
     }
   }
 }
